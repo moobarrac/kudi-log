@@ -1,0 +1,6 @@
+<!-- Used for both "Magic Link" and "Confirm signup". Paste the same into the hosted project (see docs/setup.md). -->
+<h2>Your Kudi Log sign-in</h2>
+<p>Your code is <strong style="font-size:24px;letter-spacing:4px">{{ .Token }}</strong></p>
+<p>Or tap to sign in on this device:</p>
+<p><a href="{{ .SiteURL }}/auth/callback?token_hash={{ .TokenHash }}&type=email">Sign in to Kudi Log</a></p>
+<p style="color:#59615C">If you didn't ask for this, you can ignore it.</p>
