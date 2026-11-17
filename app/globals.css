@@ -1,0 +1,140 @@
+@import "tailwindcss";
+/* Unlayered, so these values win over Tailwind's defaults (e.g. --ease-out, --text-sm). */
+@import "../design/tokens.css";
+
+/* Map the design tokens into Tailwind. `inline` keeps each utility pointing at the live
+   CSS variable, so dark mode just works when tokens.css swaps values. */
+@theme inline {
+  --color-*: initial; /* only token colours exist: no accidental default palette */
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-muted: var(--muted);
+  --color-muted-strong: var(--muted-strong);
+  --color-lime: var(--lime);
+  --color-on-lime: var(--on-lime);
+  --color-emerald: var(--emerald);
+  --color-emerald-tint: var(--emerald-tint);
+  --color-warn-bg: var(--warn-bg);
+  --color-warn-line: var(--warn-line);
+  --color-warn-ink: var(--warn-ink);
+  --color-bad: var(--bad);
+  --color-hero: var(--hero);
+  --color-on-ink: var(--on-ink);
+  --color-on-ink-muted: var(--on-ink-muted);
+  --color-on-ink-soft: var(--on-ink-soft);
+  --color-ink-raised: var(--ink-raised);
+  --color-ink-line: var(--ink-line);
+  --color-good-on-ink: var(--good-on-ink);
+  --color-good-tint-on-ink: var(--good-tint-on-ink);
+
+  --font-display: var(--font-bricolage), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+
+  --text-total: var(--text-hero);
+  --text-total--line-height: 1;
+  --text-total--letter-spacing: -0.045em;
+  --text-total-lg: 76px;
+  --text-total-lg--line-height: 1;
+  --text-total-lg--letter-spacing: -0.05em;
+  --text-h1: var(--text-h1);
+  --text-h1--line-height: 1.15;
+  --text-h1--letter-spacing: -0.03em;
+  --text-h2: var(--text-h2);
+  --text-h2--line-height: 1.25;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h3: var(--text-h3);
+  --text-h3--line-height: 1.3;
+  --text-body: var(--text-body);
+  --text-body--line-height: 1.45;
+  --text-sm: var(--text-sm);
+  --text-sm--line-height: 1.4;
+  --text-xs: var(--text-xs);
+  --text-xs--line-height: 1.35;
+
+  --radius-pill: var(--r-pill);
+  --radius-card-lg: var(--r-card-lg);
+  --radius-card: var(--r-card);
+  --radius-row: var(--r-row);
+  --radius-tile: var(--r-tile);
+
+  --spacing-gutter: var(--gutter);
+  --spacing-tap: var(--tap);
+  --spacing-btn: var(--btn-h);
+
+  --ease-out: var(--ease-out);
+}
+
+@layer base {
+  html {
+    background: var(--paper);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-size: var(--text-body);
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100dvh;
+  }
+  ::selection {
+    background: var(--lime);
+    color: var(--on-lime);
+  }
+  :focus-visible {
+    outline: 2px solid var(--emerald);
+    outline-offset: 2px;
+  }
+  button {
+    cursor: pointer;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 1ms !important;
+      transition-duration: 1ms !important;
+    }
+  }
+}
+
+/* Entrance animations in plain CSS: they run before React hydrates, so content paints at once
+   instead of waiting for JavaScript (better LCP). Set --delay / --rise per element.
+   Reduced motion: the base layer above shortens every animation to 1ms. */
+@keyframes kl-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--rise, 12px)) scale(var(--rise-scale, 1));
+  }
+}
+@keyframes kl-grow-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+@utility animate-rise {
+  animation: kl-rise var(--rise-duration, 450ms) var(--ease-out) both;
+  animation-delay: var(--delay, 0ms);
+}
+@utility animate-grow-x {
+  transform-origin: left;
+  animation: kl-grow-x var(--grow-duration, 600ms) var(--ease-out) both;
+  animation-delay: var(--delay, 0ms);
+}
+@keyframes kl-grow-y {
+  from {
+    transform: scaleY(0);
+  }
+}
+@utility animate-grow-y {
+  transform-origin: bottom;
+  animation: kl-grow-y var(--grow-duration, 450ms) var(--ease-out) both;
+  animation-delay: var(--delay, 0ms);
+}

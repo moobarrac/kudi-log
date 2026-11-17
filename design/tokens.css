@@ -1,0 +1,149 @@
+/* Kudi Log design tokens ("Night Market" direction).
+   Source of truth for colour, type, radius and motion. See docs/design.md. */
+:root {
+  /* Core */
+  --ink: #101412;          /* text, hero cards, primary button on paper */
+  --paper: #F4F2EC;        /* app background */
+  --surface: #FFFFFF;      /* cards, inputs */
+  --surface-2: #F7F5EF;    /* quiet buttons inside cards */
+  --line: #E4E1D8;         /* borders */
+  --line-soft: #F0EEE7;    /* row dividers */
+  --muted: #59615C;        /* secondary text (5.6:1 on paper) */
+  --muted-strong: #3F4642;
+  --lime: #C6F24E;         /* money moments + main CTA. Text on lime is always --ink */
+  --on-lime: #101412;      /* text on lime, same in both themes */
+  --emerald: #0E7A4E;      /* brand, good news, links */
+  --emerald-tint: #E3F3EA;
+  --warn-bg: #FFF6DE;      /* "AI will check this" rows */
+  --warn-line: #C9961A;
+  --warn-ink: #6B4D00;
+  --bad: #A33A12;          /* spending went up */
+
+  /* On ink (hero card, summary, onboarding). --hero stays dark in both themes. */
+  --hero: #101412;
+  --on-ink: #FFFFFF;
+  --on-ink-muted: #A8B0AB;
+  --on-ink-soft: #D5DBD7;
+  --ink-raised: #1E2421;
+  --ink-line: #3A423E;
+  --good-on-ink: #7BE0A8;
+  --good-tint-on-ink: #173A2A; /* tile behind good news on ink */
+
+  /* Categories: tint (chip bg) / ink (chip text) / dot (charts) */
+  --cat-food-tint: #FDEBDD;      --cat-food-ink: #A6481A;      --cat-food: #F0803C;
+  --cat-transport-tint: #E2EAFC; --cat-transport-ink: #2550B8; --cat-transport: #5B8CF0;
+  --cat-bills-tint: #FBF0CC;     --cat-bills-ink: #7A5A00;     --cat-bills: #E5B52A;
+  --cat-data-tint: #EEE6FD;      --cat-data-ink: #5B39B8;      --cat-data: #A98AF0;
+  --cat-groceries-tint: #DDF3E6; --cat-groceries-ink: #14663F; --cat-groceries: #2FA866;
+  --cat-shopping-tint: #FCE4EE;  --cat-shopping-ink: #9B2457;  --cat-shopping: #E45C93;
+  --cat-health-tint: #DDF1F4;    --cat-health-ink: #12606B;    --cat-health: #2BA3B3;
+  --cat-family-tint: #F3E8DA;    --cat-family-ink: #7A4B1C;    --cat-family: #C08A4E;
+  --cat-gifts-tint: #F7E3FB;     --cat-gifts-ink: #84259A;     --cat-gifts: #C455D9;
+  --cat-fun-tint: #FFE3E0;       --cat-fun-ink: #A0291C;       --cat-fun: #F06A5A;
+  --cat-betting-tint: #FCE1E5;   --cat-betting-ink: #9A1F35;   --cat-betting: #D23F57;
+  --cat-other-tint: #ECEAE3;     --cat-other-ink: #4A514D;     --cat-other: #8C928E;
+
+  /* Type */
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif; /* amounts + headings */
+  --font-body: "Inter", system-ui, sans-serif;                   /* everything else */
+  --text-hero: 56px;     /* today total; 76px on the summary */
+  --text-h1: 28px;
+  --text-h2: 20px;
+  --text-h3: 18px;
+  --text-body: 15px;
+  --text-sm: 13px;
+  --text-xs: 12px;
+
+  /* Shape + space */
+  --r-pill: 999px;
+  --r-card-lg: 28px;
+  --r-card: 22px;
+  --r-row: 18px;
+  --r-tile: 12px;
+  --gutter: 16px;
+  --tap: 44px;           /* minimum touch target */
+  --btn-h: 56px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-count: 400ms;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #101412;
+    --surface: #1E2421;
+    --surface-2: #262D29;
+    --line: #2C3430;
+    --line-soft: #262D29;
+    --ink: #F4F2EC;
+    --muted: #A8B0AB;
+    --muted-strong: #D5DBD7;
+    --emerald: #7BE0A8;
+    --emerald-tint: #173A2A;
+    --bad: #F2997A;
+    --warn-bg: #2E2614; --warn-line: #C9961A; --warn-ink: #F0CE7A;
+    /* Categories on dark: deep tint, light ink (all 7:1 or better) */
+    --cat-food-tint: #3A2618;      --cat-food-ink: #F7B285;
+    --cat-transport-tint: #1D2A44; --cat-transport-ink: #A9C2F7;
+    --cat-bills-tint: #352D14;     --cat-bills-ink: #EBCB6A;
+    --cat-data-tint: #2B2343;      --cat-data-ink: #C9B6F7;
+    --cat-groceries-tint: #173325; --cat-groceries-ink: #86D9A9;
+    --cat-shopping-tint: #3A1E2A;  --cat-shopping-ink: #F2A3C3;
+    --cat-health-tint: #163238;    --cat-health-ink: #86D3DE;
+    --cat-family-tint: #33281C;    --cat-family-ink: #DDB98F;
+    --cat-gifts-tint: #33203A;     --cat-gifts-ink: #E2A6F0;
+    --cat-fun-tint: #3D201D;       --cat-fun-ink: #F7A398;
+    --cat-betting-tint: #3A1C22;   --cat-betting-ink: #F4A3B1;
+    --cat-other-tint: #2A302D;     --cat-other-ink: #C2C8C4;
+    --hero: #1A201D;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #101412;
+  --surface: #1E2421;
+  --surface-2: #262D29;
+  --line: #2C3430;
+  --line-soft: #262D29;
+  --ink: #F4F2EC;
+  --muted: #A8B0AB;
+  --muted-strong: #D5DBD7;
+  --emerald: #7BE0A8;
+  --emerald-tint: #173A2A;
+  --bad: #F2997A;
+  --warn-bg: #2E2614; --warn-line: #C9961A; --warn-ink: #F0CE7A;
+  /* Categories on dark: deep tint, light ink (all 7:1 or better) */
+  --cat-food-tint: #3A2618;      --cat-food-ink: #F7B285;
+  --cat-transport-tint: #1D2A44; --cat-transport-ink: #A9C2F7;
+  --cat-bills-tint: #352D14;     --cat-bills-ink: #EBCB6A;
+  --cat-data-tint: #2B2343;      --cat-data-ink: #C9B6F7;
+  --cat-groceries-tint: #173325; --cat-groceries-ink: #86D9A9;
+  --cat-shopping-tint: #3A1E2A;  --cat-shopping-ink: #F2A3C3;
+  --cat-health-tint: #163238;    --cat-health-ink: #86D3DE;
+  --cat-family-tint: #33281C;    --cat-family-ink: #DDB98F;
+  --cat-gifts-tint: #33203A;     --cat-gifts-ink: #E2A6F0;
+  --cat-fun-tint: #3D201D;       --cat-fun-ink: #F7A398;
+  --cat-betting-tint: #3A1C22;   --cat-betting-ink: #F4A3B1;
+  --cat-other-tint: #2A302D;     --cat-other-ink: #C2C8C4;
+  --hero: #1A201D;
+}
+
+html { font-feature-settings: "tnum" 1; }  /* amounts line up */
+
+/* Always-light category colours, for surfaces that stay light in dark mode (the white and lime sample cards on Welcome). */
+.cats-light {
+  --cat-food-tint: #FDEBDD;      --cat-food-ink: #A6481A;
+  --cat-transport-tint: #E2EAFC; --cat-transport-ink: #2550B8;
+  --cat-bills-tint: #FBF0CC;     --cat-bills-ink: #7A5A00;
+  --cat-data-tint: #EEE6FD;      --cat-data-ink: #5B39B8;
+  --cat-groceries-tint: #DDF3E6; --cat-groceries-ink: #14663F;
+  --cat-shopping-tint: #FCE4EE;  --cat-shopping-ink: #9B2457;
+  --cat-health-tint: #DDF1F4;    --cat-health-ink: #12606B;
+  --cat-family-tint: #F3E8DA;    --cat-family-ink: #7A4B1C;
+  --cat-gifts-tint: #F7E3FB;     --cat-gifts-ink: #84259A;
+  --cat-fun-tint: #FFE3E0;       --cat-fun-ink: #A0291C;
+  --cat-betting-tint: #FCE1E5;   --cat-betting-ink: #9A1F35;
+  --cat-other-tint: #ECEAE3;     --cat-other-ink: #4A514D;
+}
